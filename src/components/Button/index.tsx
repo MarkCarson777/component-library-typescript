@@ -1,18 +1,24 @@
 import classnames from "classnames";
-import { Link } from "react-router-dom";
 
-type ButtonProps = {
-  size: "md";
-  path: string;
-  className?: string;
-  style?: object;
-  color?: "primary" | "secondary";
-  label?: string;
-  icon?: string;
-  disabled?: boolean;
-  pending?: boolean;
-  onClick?: () => void;
-};
+type ExcludeFromTuple<T extends any[], U> = {
+  [K in keyof T]: T[K] extends U ? never : T[K];
+}[number];
+
+type Exclusive<T extends PropertyKey[], U = any> = T[number] extends infer E
+  ? E extends string
+    ? Record<E, U> & { [k in ExcludeFromTuple<T, E>]?: never }
+    : never
+  : never & {};
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  Partial<{
+    label?: string;
+    icon?: string;
+    pending?: boolean;
+    disabled?: boolean;
+  }> &
+  Exclusive<["primary", "secondary"], boolean> &
+  Required<{ onClick: () => void; size: "md" }>;
 
 const sizes = {
   md: 40,
@@ -21,10 +27,11 @@ const sizes = {
 export function Button(props: ButtonProps) {
   const {
     className,
+    primary,
+    secondary,
     style,
     label,
     icon,
-    path,
     size,
     color,
     disabled,
@@ -33,23 +40,19 @@ export function Button(props: ButtonProps) {
     ...other
   } = props;
 
-  const Component = path ? (path.startsWith("/") ? Link : "a") : "button";
-
   return (
-    <Component
+    <button
       className={classnames(
+        className,
         "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none space-x-1",
-        color === "primary" && "bg-blue-500",
-        color === "secondary" && "bg-red-500",
+        { "bg-blue-500": primary, "bg-red-500": secondary },
         size === "md" && "px-4 rounded-lg",
-        (disabled || pending) && "opacity-50 pointer-events-none",
-        className
+        (disabled || pending) && "opacity-50 pointer-events-none"
       )}
       style={{
         height: sizes[size],
         ...style,
       }}
-      to={path}
       disabled={disabled}
       onClick={onClick}
       {...other}
@@ -65,6 +68,6 @@ export function Button(props: ButtonProps) {
           <Loader />
         </div>
       )} */}
-    </Component>
+    </button>
   );
 }

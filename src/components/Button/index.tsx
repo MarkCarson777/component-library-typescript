@@ -17,7 +17,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     pending?: boolean;
     disabled?: boolean;
   }> &
-  Exclusive<["primary", "secondary"], boolean> &
+  Exclusive<["primary", "secondary", "success", "warning", "danger"], boolean> &
   Required<{ onClick: () => void; size: "md" }>;
 
 const sizes = {
@@ -29,6 +29,9 @@ export function Button(props: ButtonProps) {
     className,
     primary,
     secondary,
+    success,
+    warning,
+    danger,
     style,
     label,
     icon,

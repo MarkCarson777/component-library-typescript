@@ -10,9 +10,34 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
-    label: "hello",
+    label: "Primary",
+    size: "md",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    label: "Secondary",
+    size: "md",
+  },
+};
+export const Success: Story = {
+  args: {
+    label: "Success",
+    size: "md",
+  },
+};
+export const Warning: Story = {
+  args: {
+    label: "Warning",
+    size: "md",
+  },
+};
+export const Danger: Story = {
+  args: {
+    label: "Danger",
     size: "md",
   },
 };

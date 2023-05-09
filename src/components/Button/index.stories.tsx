@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     label: "Primary",
-    size: "md",
+    size: "m",
     primary: true,
   },
 };
@@ -21,7 +21,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     label: "Secondary",
-    size: "md",
+    size: "m",
     secondary: true,
   },
 };
@@ -29,7 +29,7 @@ export const Secondary: Story = {
 export const Success: Story = {
   args: {
     label: "Success",
-    size: "md",
+    size: "m",
     success: true,
   },
 };
@@ -37,7 +37,7 @@ export const Success: Story = {
 export const Warning: Story = {
   args: {
     label: "Warning",
-    size: "md",
+    size: "m",
     warning: true,
   },
 };
@@ -45,7 +45,7 @@ export const Warning: Story = {
 export const Danger: Story = {
   args: {
     label: "Danger",
-    size: "md",
+    size: "m",
     danger: true,
   },
 };

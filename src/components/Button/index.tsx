@@ -18,10 +18,18 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     disabled?: boolean;
   }> &
   Exclusive<["primary", "secondary", "success", "warning", "danger"], boolean> &
-  Required<{ onClick: () => void; size: "md" }>;
+  Required<{
+    onClick: () => void;
+    size: "xs" | "s" | "m" | "l" | "xl" | "auto";
+  }>;
 
 const sizes = {
-  md: 40,
+  xs: 24,
+  s: 38,
+  m: 40,
+  l: 50,
+  xl: 60,
+  auto: "auto",
 };
 
 export function Button(props: ButtonProps) {
@@ -53,7 +61,9 @@ export function Button(props: ButtonProps) {
           "bg-yellow-500": warning,
           "bg-red-500": danger,
         },
-        size === "md" && "px-4 rounded-lg",
+        size === "xs" && "px-2 rounded",
+        (size === "s" || size === "m" || size === "l") && "px-5 rounded-lg",
+        size === "xl" && "px-5 rounded-lg text-lg",
         (disabled || pending) && "opacity-50 pointer-events-none"
       )}
       style={{
@@ -63,13 +73,21 @@ export function Button(props: ButtonProps) {
       disabled={disabled}
       onClick={onClick}
     >
-      {icon && (
-        <span className="relative h-full inline-flex items-center">
-          Insert Icon
-        </span>
-      )}
-      <span>{label}</span>
-      {pending && <div className="text-[0.5rem]">Insert Loader</div>}
+      <div
+        className={classnames(
+          size === "xs" && "text-xs space-x-2",
+          size === "s" && "text-sm space-x-3",
+          (size === "m" || size === "l" || size === "xl") && "space-x-3"
+        )}
+      >
+        {icon && (
+          <span className="relative h-full inline-flex items-center">
+            Insert Icon
+          </span>
+        )}
+        <span>{label}</span>
+        {pending && <div className="text-[0.5rem]">Insert Loader</div>}
+      </div>
     </button>
   );
 }

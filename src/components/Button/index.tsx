@@ -36,11 +36,9 @@ export function Button(props: ButtonProps) {
     label,
     icon,
     size,
-    color,
     disabled,
     pending,
     onClick,
-    ...other
   } = props;
 
   return (
@@ -48,7 +46,13 @@ export function Button(props: ButtonProps) {
       className={classnames(
         className,
         "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none space-x-1",
-        { "bg-blue-500": primary, "bg-red-500": secondary },
+        {
+          "bg-blue-500": primary,
+          "bg-gray-500": secondary,
+          "bg-green-500": success,
+          "bg-yellow-500": warning,
+          "bg-red-500": danger,
+        },
         size === "md" && "px-4 rounded-lg",
         (disabled || pending) && "opacity-50 pointer-events-none"
       )}
@@ -58,19 +62,14 @@ export function Button(props: ButtonProps) {
       }}
       disabled={disabled}
       onClick={onClick}
-      {...other}
     >
-      {/* {icon && (
+      {icon && (
         <span className="relative h-full inline-flex items-center">
-          <Icon className="h-[16px]" icon={icon} />
+          Insert Icon
         </span>
-      )} */}
+      )}
       <span>{label}</span>
-      {/* {pending && (
-        <div className="text-[0.5rem]">
-          <Loader />
-        </div>
-      )} */}
+      {pending && <div className="text-[0.5rem]">Insert Loader</div>}
     </button>
   );
 }

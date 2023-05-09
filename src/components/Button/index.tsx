@@ -15,19 +15,22 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Partial<{ outline?: boolean; rounded?: boolean }> &
   Exclusive<["primary", "secondary", "success", "warning", "danger"], boolean>;
 
-export const Button: FunctionComponent<ButtonProps> = ({
-  children,
-  primary,
-  secondary,
-  success,
-  warning,
-  danger,
-  outline,
-  rounded,
-  ...rest
-}) => {
+export const Button: FunctionComponent<ButtonProps> = (props) => {
+  const {
+    children,
+    primary,
+    secondary,
+    success,
+    warning,
+    danger,
+    outline,
+    rounded,
+    className,
+    ...rest
+  } = props;
+
   const classes = classnames(
-    rest.className,
+    className,
     "flex items-center px-3 py-1.5 border",
     {
       "border-blue-500 bg-blue-500": primary,

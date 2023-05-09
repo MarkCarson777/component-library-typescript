@@ -1,58 +1,70 @@
-import type { FunctionComponent } from "react";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 
-type ExcludeFromTuple<T extends any[], U> = {
-  [K in keyof T]: T[K] extends U ? never : T[K];
-}[number];
+type ButtonProps = {
+  size: "md";
+  path: string;
+  className?: string;
+  style?: object;
+  color?: "primary" | "secondary";
+  label?: string;
+  icon?: string;
+  disabled?: boolean;
+  pending?: boolean;
+  onClick?: () => void;
+};
 
-type Exclusive<T extends PropertyKey[], U = any> = T[number] extends infer E
-  ? E extends string
-    ? Record<E, U> & { [k in ExcludeFromTuple<T, E>]?: never }
-    : never
-  : never & {};
+const sizes = {
+  md: 40,
+};
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  Partial<{ outline?: boolean; rounded?: boolean }> &
-  Exclusive<["primary", "secondary", "success", "warning", "danger"], boolean>;
-
-export const Button: FunctionComponent<ButtonProps> = (props) => {
+export function Button(props: ButtonProps) {
   const {
-    children,
-    primary,
-    secondary,
-    success,
-    warning,
-    danger,
-    outline,
-    rounded,
     className,
-    ...rest
+    style,
+    label,
+    icon,
+    path,
+    size,
+    color,
+    disabled,
+    pending,
+    onClick,
+    ...other
   } = props;
 
-  const classes = classnames(
-    className,
-    "flex items-center px-3 py-1.5 border",
-    {
-      "border-blue-500 bg-blue-500": primary,
-      "border-gray-900 bg-gray-900": secondary,
-      "border-green-500 bg-green-500": success,
-      "border-yellow-400 bg-yellow-400": warning,
-      "border-red-500 bg-red-500": danger,
-      "rounded-full": rounded,
-      "text-white":
-        !outline && (primary || secondary || success || warning || danger),
-      "bg-white": outline,
-      "text-blue-500": outline && primary,
-      "text-gray-500": outline && primary,
-      "text-green-500": outline && primary,
-      "text-yellow-500": outline && primary,
-      "text-red-500": outline && primary,
-    }
-  );
+  const Component = path ? (path.startsWith("/") ? Link : "a") : "button";
 
   return (
-    <button {...rest} className={classes}>
-      {children}
-    </button>
+    <Component
+      className={classnames(
+        "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none space-x-1",
+        color === "primary" && "bg-blue-500",
+        color === "secondary" && "bg-red-500",
+        size === "md" && "px-4 rounded-lg",
+        (disabled || pending) && "opacity-50 pointer-events-none",
+        className
+      )}
+      style={{
+        height: sizes[size],
+        ...style,
+      }}
+      to={path}
+      disabled={disabled}
+      onClick={onClick}
+      {...other}
+    >
+      {/* {icon && (
+        <span className="relative h-full inline-flex items-center">
+          <Icon className="h-[16px]" icon={icon} />
+        </span>
+      )} */}
+      <span>{label}</span>
+      {/* {pending && (
+        <div className="text-[0.5rem]">
+          <Loader />
+        </div>
+      )} */}
+    </Component>
   );
-};
+}

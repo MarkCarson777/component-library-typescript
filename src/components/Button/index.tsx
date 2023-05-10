@@ -46,11 +46,12 @@ export function Button(props: ButtonProps) {
     size,
     disabled,
     pending,
-    onClick,
+    ...rest
   } = props;
 
   return (
     <button
+      {...rest}
       className={classnames(
         className,
         "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none space-x-1",
@@ -71,7 +72,6 @@ export function Button(props: ButtonProps) {
         ...style,
       }}
       disabled={disabled}
-      onClick={onClick}
     >
       <div
         className={classnames(

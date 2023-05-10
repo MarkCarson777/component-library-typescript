@@ -34,7 +34,7 @@ const sizes = {
 
 export function Button(props: ButtonProps) {
   const {
-    className,
+    children,
     primary,
     secondary,
     success,
@@ -46,6 +46,7 @@ export function Button(props: ButtonProps) {
     size,
     disabled,
     pending,
+    className,
     ...rest
   } = props;
 
@@ -80,12 +81,7 @@ export function Button(props: ButtonProps) {
           (size === "m" || size === "l" || size === "xl") && "space-x-3"
         )}
       >
-        {icon && (
-          <span className="relative h-full inline-flex items-center">
-            Insert Icon
-          </span>
-        )}
-        <span>{label}</span>
+        {children}
         {pending && <div className="text-[0.5rem]">Insert Loader</div>}
       </div>
     </button>

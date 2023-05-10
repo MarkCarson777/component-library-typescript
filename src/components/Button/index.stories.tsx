@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from ".";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
@@ -23,6 +26,7 @@ export const Primary: Story = {
     primary: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Primary</Button>,
 };
 
 export const Secondary: Story = {
@@ -31,6 +35,7 @@ export const Secondary: Story = {
     secondary: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Secondary</Button>,
 };
 
 export const Success: Story = {
@@ -39,6 +44,7 @@ export const Success: Story = {
     success: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Success</Button>,
 };
 
 export const Warning: Story = {
@@ -47,6 +53,7 @@ export const Warning: Story = {
     warning: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Warning</Button>,
 };
 
 export const Danger: Story = {
@@ -55,6 +62,7 @@ export const Danger: Story = {
     danger: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Danger</Button>,
 };
 
 export const Pending: Story = {
@@ -63,6 +71,7 @@ export const Pending: Story = {
     primary: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Pending</Button>,
 };
 
 export const Disabled: Story = {
@@ -71,6 +80,7 @@ export const Disabled: Story = {
     primary: true,
     size: "xs",
   },
+  render: (args) => <Button {...args}>Disabled</Button>,
 };
 
 export const Icon: Story = {
@@ -79,4 +89,10 @@ export const Icon: Story = {
     primary: true,
     size: "xs",
   },
+  render: (args) => (
+    <Button {...args}>
+      <FontAwesomeIcon icon={faMagnifyingGlass} />
+      Icon
+    </Button>
+  ),
 };

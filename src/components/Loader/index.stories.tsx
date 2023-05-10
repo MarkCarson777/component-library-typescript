@@ -13,6 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Loader>;
 
 export const Default: Story = {
+  // remove no control warning from Storybook
   parameters: {
     controls: { hideNoControlsWarning: true },
   },

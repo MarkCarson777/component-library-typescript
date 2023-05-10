@@ -12,15 +12,14 @@ type Exclusive<T extends PropertyKey[], U = any> = T[number] extends infer E
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Partial<{
-    label?: string;
-    icon?: string;
     pending?: boolean;
     disabled?: boolean;
   }> &
   Exclusive<["primary", "secondary", "success", "warning", "danger"], boolean> &
   Required<{
-    onClick: () => void;
+    children: React.ReactNode;
     size: "xs" | "s" | "m" | "l" | "xl" | "auto";
+    onClick: () => void;
   }>;
 
 const sizes = {
@@ -41,8 +40,6 @@ export function Button(props: ButtonProps) {
     warning,
     danger,
     style,
-    label,
-    icon,
     size,
     disabled,
     pending,
@@ -66,6 +63,11 @@ export function Button(props: ButtonProps) {
         size === "xs" && "px-2 rounded",
         (size === "s" || size === "m" || size === "l") && "px-5 rounded-lg",
         size === "xl" && "px-5 rounded-lg text-lg",
+        !disabled && primary && "hover:bg-blue-600",
+        !disabled && secondary && "hover:bg-gray-600",
+        !disabled && success && "hover:bg-green-600",
+        !disabled && warning && "hover:bg-yellow-600",
+        !disabled && danger && "hover:bg-red-600",
         (disabled || pending) && "opacity-50 pointer-events-none"
       )}
       style={{
@@ -76,13 +78,14 @@ export function Button(props: ButtonProps) {
     >
       <div
         className={classnames(
+          "flex items-center",
           size === "xs" && "text-xs space-x-2",
           size === "s" && "text-sm space-x-3",
           (size === "m" || size === "l" || size === "xl") && "space-x-3"
         )}
       >
-        {children}
         {pending && <div className="text-[0.5rem]">Insert Loader</div>}
+        {children}
       </div>
     </button>
   );

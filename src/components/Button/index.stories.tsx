@@ -9,6 +9,7 @@ const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   argTypes: {
+    // remove controls for button variants
     primary: {
       table: {
         disable: true,
@@ -34,10 +35,12 @@ const meta: Meta<typeof Button> = {
         disable: true,
       },
     },
+    // add radio control for button size
     size: {
       options: ["xs", "s", "m", "l", "xl", "auto"],
-      control: { type: "select" },
+      control: { type: "radio" },
     },
+    // add default onClick action
     onClick: { action: "onClick" },
   },
 };

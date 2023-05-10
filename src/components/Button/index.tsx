@@ -1,5 +1,7 @@
 import classnames from "classnames";
 
+import styles from "./index.module.css";
+
 type ExcludeFromTuple<T extends any[], U> = {
   [K in keyof T]: T[K] extends U ? never : T[K];
 }[number];
@@ -68,7 +70,13 @@ export function Button(props: ButtonProps) {
         !disabled && success && "hover:bg-green-600",
         !disabled && warning && "hover:bg-yellow-600",
         !disabled && danger && "hover:bg-red-600",
-        (disabled || pending) && "opacity-50 pointer-events-none"
+        (disabled || pending) && "opacity-50 pointer-events-none",
+        size === "xs" && styles.xs,
+        size === "s" && styles.sm,
+        size === "m" && styles.med,
+        size === "l" && styles.lg,
+        size === "xl" && styles.xlg,
+        size === "auto" && styles.auto
       )}
       style={{
         height: sizes[size],

@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    // remove controls for button variants
+    // remove Storybook controls for button variants
     primary: {
       table: {
         disable: true,

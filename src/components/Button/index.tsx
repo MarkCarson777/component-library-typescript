@@ -1,5 +1,7 @@
 import classnames from "classnames";
 
+import "./index.css";
+
 type ExcludeFromTuple<T extends any[], U> = {
   [K in keyof T]: T[K] extends U ? never : T[K];
 }[number];
@@ -74,7 +76,6 @@ export function Button(props: ButtonProps) {
         height: sizes[size],
         ...style,
       }}
-      disabled={disabled}
     >
       <div
         className={classnames(

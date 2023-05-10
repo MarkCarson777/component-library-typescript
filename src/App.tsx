@@ -1,5 +1,5 @@
 import "./App.css";
 
 export function App() {
-  return <div>App</div>;
+  return <h1>App</h1>;
 }

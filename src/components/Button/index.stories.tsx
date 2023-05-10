@@ -104,7 +104,7 @@ export const Pending: Story = {
     size: "xs",
     pending: true,
   },
-  render: (args) => <Button {...args}></Button>,
+  render: (args) => <Button {...args}>Pending</Button>,
 };
 
 export const Disabled: Story = {
@@ -120,6 +120,8 @@ export const Icon: Story = {
   args: {
     primary: true,
     size: "xs",
+    disabled: false,
+    pending: false,
   },
   render: (args) => (
     <Button {...args}>

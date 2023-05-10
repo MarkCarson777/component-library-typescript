@@ -5,7 +5,13 @@ import { Button } from ".";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
-  argTypes: { onClick: { action: "onClick" } },
+  argTypes: {
+    size: {
+      options: ["xs", "s", "m", "l", "xl", "auto"],
+      control: { type: "radio" },
+    },
+    onClick: { action: "onClick" },
+  },
 };
 
 export default meta;

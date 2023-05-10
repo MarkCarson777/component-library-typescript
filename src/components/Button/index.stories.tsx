@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       options: ["xs", "s", "m", "l", "xl", "auto"],
-      control: { type: "radio" },
+      control: { type: "select" },
     },
     onClick: { action: "onClick" },
   },
@@ -20,39 +20,63 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     label: "Primary",
-    size: "m",
     primary: true,
+    size: "xs",
   },
 };
 
 export const Secondary: Story = {
   args: {
     label: "Secondary",
-    size: "m",
     secondary: true,
+    size: "xs",
   },
 };
 
 export const Success: Story = {
   args: {
     label: "Success",
-    size: "m",
     success: true,
+    size: "xs",
   },
 };
 
 export const Warning: Story = {
   args: {
     label: "Warning",
-    size: "m",
     warning: true,
+    size: "xs",
   },
 };
 
 export const Danger: Story = {
   args: {
     label: "Danger",
-    size: "m",
     danger: true,
+    size: "xs",
+  },
+};
+
+export const Pending: Story = {
+  args: {
+    label: "Pending",
+    primary: true,
+    size: "xs",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: "Disabled",
+    primary: true,
+    size: "xs",
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    label: "Icon",
+    primary: true,
+    size: "xs",
   },
 };

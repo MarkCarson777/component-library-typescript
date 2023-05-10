@@ -1,5 +1,7 @@
 import classnames from "classnames";
 
+import { Loader } from "../Loader";
+
 import styles from "./index.module.css";
 
 // ExcludeFromTuple type returns a new tuple with all occurences of U removed from T
@@ -57,7 +59,7 @@ export function Button(props: ButtonProps) {
       className={classnames(
         className,
         // default styling for all button variants
-        "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none space-x-1",
+        "relative inline-flex justify-center items-center font-semibold text-white leading-none outline-none",
         // set colour according to button variant
         {
           "bg-blue-500": primary,
@@ -92,19 +94,29 @@ export function Button(props: ButtonProps) {
         ...style,
       }}
     >
-      {/* adjust font size and spacing according to size prop */}
+      {/* adjust font size according to size prop */}
       <div
         className={classnames(
           "flex items-center",
-          size === "xs" && "text-xs space-x-2",
-          size === "s" && "text-sm space-x-3",
-          (size === "m" || size === "l" || size === "xl") && "space-x-3"
+          size === "xs" && "text-xs",
+          size === "s" && "text-sm",
+          pending && "opacity-0"
         )}
       >
-        {/* if pending display loader component */}
-        {pending && <div className="text-[0.5rem]">Insert Loader</div>}
         {children}
       </div>
+      {/* if pending display loader component */}
+      {pending && (
+        <Loader
+          className={classnames(
+            size === "xs" && "text-[0.5rem]",
+            size === "s" && "text-[0.6rem]",
+            size === "m" && "text-[0.7rem]",
+            (size === "l" || size === "xl") && "text-[0.8rem]",
+            size === "auto" && "text-[0.5rem]"
+          )}
+        />
+      )}
     </button>
   );
 }

@@ -104,7 +104,7 @@ export const Pending: Story = {
     size: "xs",
     pending: true,
   },
-  render: (args) => <Button {...args}>Pending</Button>,
+  render: (args) => <Button {...args}></Button>,
 };
 
 export const Disabled: Story = {

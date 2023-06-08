@@ -1,11 +1,22 @@
 import classnames from "classnames";
 
+import successIcon from "../../assets/icons/circle-check.svg";
+import infoIcon from "../../assets/icons/circle-info.svg";
+import warningIcon from "../../assets/icons/circle-exclamation.svg";
+import errorIcon from "../../assets/icons/circle-xmark.svg";
+
 type AlertProps = {
   message: string;
   type: "success" | "info" | "warning" | "error";
 };
 
 export const Alert: React.FC<AlertProps> = ({ message, type }) => {
+  const iconMap = {
+    success: successIcon,
+    info: infoIcon,
+    warning: warningIcon,
+    error: errorIcon,
+  };
   const alertType = (): string => {
     switch (type) {
       case "success":
@@ -25,14 +36,15 @@ export const Alert: React.FC<AlertProps> = ({ message, type }) => {
     <div
       className={classnames(
         "flex items-center justify-between px-4 border-4 rounded drop-shadow h-[64px]",
-        type === "success" && "border-green-500",
-        type === "info" && "border-blue-500",
-        type === "warning" && "border-yellow-500",
-        type === "error" && "border-red-500"
+        type === "success" && "border-green-500 bg-green-100",
+        type === "info" && "border-blue-500 bg-blue-100",
+        type === "warning" && "border-yellow-500 bg-yellow-100",
+        type === "error" && "border-red-500 bg-red-100"
       )}
     >
-      <div>
-        <span className="font-semibold mr-2">{alertType()}</span>
+      <div className="flex items-center">
+        <img className="h-[24px]" src={iconMap[type]} alt={type} />
+        {/* <span className="font-semibold mr-2">{alertType()}</span> */}
         <span>{message}</span>
       </div>
       <span>

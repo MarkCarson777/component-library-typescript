@@ -23,7 +23,7 @@ export const Avatar: React.FC<AvatarProps> = (props) => {
   return (
     <div
       className={classnames(
-        "relative inline-flex justify-center items-center overflow-hidden bg-red-500 border border-red-500 border-opacity-10 text-white font-semibold",
+        "relative inline-flex justify-center items-center overflow-hidden border border-gray-500 drop-shadow",
         onClick && "cursor-pointer",
         shape === "circle" && "rounded-full",
         (shape === "square" || shape === "rectangle") && "rounded",
@@ -32,8 +32,6 @@ export const Avatar: React.FC<AvatarProps> = (props) => {
       style={{
         width: shape === "rectangle" ? sizes[size] * 1.5 : sizes[size],
         height: sizes[size],
-        borderRadius: "50%",
-        overflow: "hidden",
       }}
       onClick={onClick}
     >

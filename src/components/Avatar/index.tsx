@@ -1,7 +1,10 @@
+import classnames from "classnames";
+
 type AvatarProps = {
   name: string;
   imageUrl: string;
   size: "xs" | "s" | "m" | "l" | "xl";
+  onClick?: () => void;
 };
 
 const sizes = {
@@ -13,16 +16,18 @@ const sizes = {
 };
 
 export const Avatar: React.FC<AvatarProps> = (props) => {
-  const { name, imageUrl, size } = props;
+  const { name, imageUrl, size, onClick } = props;
 
   return (
     <div
+      className={classnames(onClick && "cursor-pointer")}
       style={{
         width: sizes[size],
         height: sizes[size],
         borderRadius: "50%",
         overflow: "hidden",
       }}
+      onClick={onClick}
     >
       <img
         src={imageUrl}

@@ -1,15 +1,25 @@
 type AvatarProps = {
   name: string;
   imageUrl: string;
-  size?: number;
+  size: "xs" | "s" | "m" | "l" | "xl";
 };
 
-const Avatar: React.FC<AvatarProps> = ({ name, imageUrl, size = 40 }) => {
+const sizes = {
+  xs: 32,
+  s: 40,
+  m: 50,
+  l: 60,
+  xl: 80,
+};
+
+export const Avatar: React.FC<AvatarProps> = (props) => {
+  const { name, imageUrl, size } = props;
+
   return (
     <div
       style={{
-        width: size,
-        height: size,
+        width: sizes[size],
+        height: sizes[size],
         borderRadius: "50%",
         overflow: "hidden",
       }}
@@ -22,5 +32,3 @@ const Avatar: React.FC<AvatarProps> = ({ name, imageUrl, size = 40 }) => {
     </div>
   );
 };
-
-export default Avatar;

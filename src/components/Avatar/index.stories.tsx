@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Avatar from "./";
+import { Avatar } from "./";
 
 import avatar from "../../assets/images/avatar.jpg";
 
@@ -18,8 +18,8 @@ export const Default: Story = {
     controls: { hideNoControlsWarning: true },
   },
   args: {
-    name: "Mark",
-    size: 80,
+    name: "Default",
+    size: "m",
     imageUrl: avatar,
   },
 };

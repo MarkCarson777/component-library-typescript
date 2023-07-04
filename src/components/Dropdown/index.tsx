@@ -12,7 +12,7 @@ type DropdownProps = {
 
 export const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const handleOptionSelect = (option: DropdownOption) => {
+  const onOptionSelect = (option: DropdownOption) => {
     setSelectedOption(option.value);
     onSelect(option.value);
   };
@@ -20,7 +20,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
   return (
     <select
       value={selectedOption || ""}
-      onChange={(e) => handleOptionSelect(options[e.target.selectedIndex])}
+      onChange={(e) => onOptionSelect(options[e.target.selectedIndex])}
     >
       <option value="" disabled>
         Select an option
